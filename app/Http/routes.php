@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix' => 'api'], function () {
+    Route::post('createProducto', 'MainController@createProducto');
+    Route::delete('deleteProducto', 'MainController@deleteProducto');
+    Route::put('editProducto', 'MainController@editProducto');
+
+    Route::get('getCategorias', 'MainController@getCategorias');
+    Route::get('getProductos', 'MainController@getProductos');
+
+    Route::get('login',' MainController@login');
 });
+
+

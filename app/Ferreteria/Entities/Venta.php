@@ -14,6 +14,10 @@ class Venta extends Model {
     ];
 
     public function user(){
-        return $this->hasOne('Ferreteria\Entities\User', 'categoria_id', 'id');
+        return $this->hasOne('Ferreteria\Entities\User', 'id', 'user_id');
+    }
+
+    public function lineas(){
+        return $this->hasMany('Ferreteria\Entities\LineaVenta', 'venta_id', 'id');
     }
 }
