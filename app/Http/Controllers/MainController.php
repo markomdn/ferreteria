@@ -7,6 +7,8 @@
  */
 
 namespace App\Http\Controllers;
+use App\Ferreteria\Entities\Categoria;
+use Illuminate\Routing\Controller as BaseController;
 
 use App\Ferreteria\Repositories\CategoriasRepo;
 use App\Ferreteria\Repositories\LineasVentasRepo;
@@ -15,7 +17,7 @@ use App\Ferreteria\Repositories\VentasRepo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
-class MainController{
+class MainController extends BaseController{
     protected $categoriaRepo;
     protected $productoRepo;
     protected $ventaRepo;
@@ -66,7 +68,7 @@ class MainController{
     }
 
     public function getCategorias(){
-        $categorias = $this->categoriaRepo->getCategorias();
+        $categorias = Categoria::all();
         return $categorias;
     }
 

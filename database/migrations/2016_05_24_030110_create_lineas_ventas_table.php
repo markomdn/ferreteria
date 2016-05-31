@@ -21,6 +21,10 @@ class CreateLineasVentasTable extends Migration
 
             $table->foreign('producto_id')->references('id')->on('productos');
             $table->foreign('venta_id')->references('id')->on('ventas');
+
+            $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
