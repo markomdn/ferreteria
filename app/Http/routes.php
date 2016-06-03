@@ -10,16 +10,23 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use App\Ferreteria\Entities\Categoria;
+Route::get('breweries', ['middleware' => 'cors', function()
+{
+    return Categoria::all();
+}]);
 
-Route::group(['prefix' => 'api'], function () {
-    Route::post('createProducto', 'MainController@createProducto');
-    Route::delete('deleteProducto', 'MainController@deleteProducto');
-    Route::put('editProducto', 'MainController@editProducto');
+Route::group(['middleware' => 'cors'], function () {
+    Route::group(['prefix' => 'api'], function () {
+        Route::post('createProducto', 'MainController@createProducto');
+        Route::delete('deleteProducto', 'MainController@deleteProducto');
+        Route::put('editProducto', 'MainController@editProducto');
 
-    Route::get('getCategorias', 'MainController@getCategorias');
-    Route::get('getProductos', 'MainController@getProductos');
+        Route::get('getCategorias', 'MainController@getCategorias');
+        Route::get('getProductos', 'MainController@getProductos');
 
-    Route::get('login',' MainController@login');
+        Route::get('login',' MainController@login');
+    });
 });
 
 
