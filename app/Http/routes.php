@@ -16,7 +16,7 @@ Route::get('breweries', ['middleware' => 'cors', function()
     return Categoria::all();
 }]);
 
-Route::group(['middleware' => 'cors'], function () {
+//Route::group(['middleware' => 'cors'], function () {
     Route::group(['prefix' => 'api'], function () {
         Route::post('createProducto', 'MainController@createProducto');
         Route::delete('deleteProducto', 'MainController@deleteProducto');
@@ -27,6 +27,6 @@ Route::group(['middleware' => 'cors'], function () {
 
         Route::get('login',' MainController@login');
     });
-});
+//});
 
 
