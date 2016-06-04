@@ -20,7 +20,7 @@ use App\Ferreteria\Entities\Categoria;
         Route::put('editProductoForSale', 'MainController@editProductoForSale');
         Route::get('getCategorias', 'MainController@getCategorias');
         Route::get('getProductos', 'MainController@getProductos');
-        Route::post('getVenta', 'MainController@getVenta');
+        Route::get('getVenta', 'MainController@getVenta');
         Route::get('getProducto/{id}', 'MainController@getProducto');
 
         Route::get('login',' MainController@login');
