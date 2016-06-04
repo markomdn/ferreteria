@@ -78,7 +78,7 @@ class MainController extends BaseController{
                 $product->save();
 
                 $linea = $this->lineaVentaRepo->createLineaVenta(
-                    $product['toDescount'],
+                    $producto['toDescount'],
                     $product->precio,
                     $product->id,
                     $venta->id);
@@ -135,7 +135,10 @@ class MainController extends BaseController{
             $dia = explode('/',Input::all()['fecha']);
             foreach($ventas as $venta){
                 $fecha = substr($venta->created_at, 0, 9);
-                $fechaNew = $fecha[2].'-'.$fecha[0].'-'.$fecha[1];
+                $fecha = explode('-', $fecha);
+                $fechaNew = $fecha[0].'-'.$fecha[1].'-'.$fecha[2];
+                $fecha = substr($venta->created_at, 0, 9);
+
                 if($dia == $fechaNew){
                     array_push($idsVentas,$venta->id);
                 }
@@ -144,7 +147,7 @@ class MainController extends BaseController{
 
         $ventasReporte = [];
         foreach($idsVentas as $id){
-            $ventaLineas = Venta::with('linea')->where('id','=',$id)->get();
+            $ventaLineas = Venta::with('lineas')->where('id','=',$id)->get();
             array_push($ventasReporte,$ventaLineas[0]);
         }
 
