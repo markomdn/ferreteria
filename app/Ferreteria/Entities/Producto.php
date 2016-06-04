@@ -22,6 +22,6 @@ class Producto extends Model {
     }
 
     public function lineas_productos(){
-        return $this->hasMany('Ferreteria\Entities\LineaVentas','producto_id','id');
+        return $this->hasMany('Ferreteria\Entities\LineaVenta','producto_id','id');
     }
 }
