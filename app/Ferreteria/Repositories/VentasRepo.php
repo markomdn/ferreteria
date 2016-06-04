@@ -11,7 +11,7 @@ use App\Ferreteria\Entities\Venta;
 class VentasRepo {
 
     public function getVentas(){
-        return Venta::with('user');
+        return Venta::with('lineas')->get();
     }
     
     public function createVenta($user_id){
