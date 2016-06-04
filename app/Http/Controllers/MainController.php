@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 use App\Ferreteria\Entities\Categoria;
 use App\Ferreteria\Entities\Producto;
+use App\Ferreteria\Entities\Venta;
 use Illuminate\Routing\Controller as BaseController;
 
 use App\Ferreteria\Repositories\CategoriasRepo;
@@ -115,6 +116,38 @@ class MainController extends BaseController{
         }
 
         return 'No existe usuario';
+    }
+
+    public function getVenta(){
+        $band = Input::all()['band'];
+        $ventas = Venta::all();
+        $idsVentas = [];
+        if($band == 0){
+            $mes = Input::all()['fecha'];
+            foreach($ventas as $venta){
+                $fecha = explode('-', substr($venta->created_at, 0, 9));
+                if($fecha[1] == $mes){
+                    array_push($idsVentas,$venta->id);
+                }
+            }
+        }else{
+            $dia = explode('/',Input::all()['fecha']);
+            foreach($ventas as $venta){
+                $fecha = substr($venta->created_at, 0, 9);
+                $fechaNew = $fecha[2].'-'.$fecha[0].'-'.$fecha[1];
+                if($dia == $fechaNew){
+                    array_push($idsVentas,$venta->id);
+                }
+            }
+        }
+
+        $ventasReporte = [];
+        foreach($idsVentas as $id){
+            $ventaLineas = Venta::with('linea')->where('id','=',$id)->get();
+            array_push($ventasReporte,$ventaLineas[0]);
+        }
+
+        return $ventasReporte;
     }
 
 }
