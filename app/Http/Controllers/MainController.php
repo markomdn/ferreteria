@@ -119,6 +119,7 @@ class MainController extends BaseController{
     }
 
     public function getVenta(){
+        dd(Input::all()['fecha']);
         $band = Input::all()['band'];
         $ventas = Venta::all();
         $idsVentas = [];
