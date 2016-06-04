@@ -123,7 +123,8 @@ class MainController extends BaseController{
         $ventas = Venta::all();
         $idsVentas = [];
         if($band == 0){
-            $mes = Input::all()['fecha'];
+            $mes = explode('/',Input::all()['fecha']);
+            $mes = $mes[0];
             foreach($ventas as $venta){
                 $fecha = explode('-', substr($venta->created_at, 0, 9));
                 if($fecha[1] == $mes){
