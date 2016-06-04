@@ -133,13 +133,14 @@ class MainController extends BaseController{
             }
         }else{
             $dia = explode('/',Input::all()['fecha']);
+            $dia = $dia[2].'-'.$dia[0].'-'.$dia[1];
+
             foreach($ventas as $venta){
                 $fecha = substr($venta->created_at, 0, 10);
                 $fecha = explode('-', $fecha);
                 $fechaNew = $fecha[0].'-'.$fecha[1].'-'.$fecha[2];
                 $fecha = substr($venta->created_at, 0, 10);
 
-                $dia = $dia[2].'-'.$dia[0].'-'.$dia[1];
                 if($dia == $fechaNew){
                     array_push($idsVentas,$venta->id);
                 }
