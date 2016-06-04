@@ -15,7 +15,7 @@ use App\Ferreteria\Entities\Categoria;
 //Route::group(['middleware' => 'cors'], function () {
     Route::group(['prefix' => 'api'], function () {
         Route::post('createProducto', 'MainController@createProducto');
-        Route::delete('deleteProducto', 'MainController@deleteProducto');
+        Route::post('deleteProducto', 'MainController@deleteProducto');
         Route::put('editProducto', 'MainController@editProducto');
 
         Route::get('getCategorias', 'MainController@getCategorias');

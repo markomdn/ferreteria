@@ -44,14 +44,14 @@ class MainController extends BaseController{
     }
 
     public function deleteProducto(){
+        dd(Input::all());
         $producto = $this->productoRepo->getProductoById(Input::all()['idProducto']);
-
         if(isset($producto)){
             $producto->delete();
-            return true;
+            return $producto;
         }
 
-        return false;
+        return $producto;
     }
 
     public function editProducto(){
@@ -62,7 +62,7 @@ class MainController extends BaseController{
             $producto->precio = Input::all()['precio'];
             $producto->stock = Input::all()['stock'];
             $producto->save();
-            return true;
+            return $producto;
         }
 
         return false;
