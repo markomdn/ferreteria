@@ -149,6 +149,7 @@ class MainController extends BaseController{
         foreach($idsVentas as $id){
             $ventaLineas = DB::table('ventas')
                 ->leftJoin('lineas_ventas','lineas_ventas.venta_id','=','ventas.id')
+                ->leftJoin('productos','productos.id','=','lineas_ventas.producto_id')
                 ->where('ventas.id','=',$id)
                 ->get();
             array_push($ventasReporte,$ventaLineas[0]);
