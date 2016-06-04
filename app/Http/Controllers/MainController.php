@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 use App\Ferreteria\Entities\Categoria;
+use App\Ferreteria\Entities\Producto;
 use Illuminate\Routing\Controller as BaseController;
 
 use App\Ferreteria\Repositories\CategoriasRepo;
@@ -70,6 +71,11 @@ class MainController extends BaseController{
     public function getCategorias(){
         $categorias = Categoria::all();
         return $categorias;
+    }
+
+    public function getProducto($id){
+        $producto = Producto::find($id);
+        return $producto;
     }
 
     public function getProductos(){
