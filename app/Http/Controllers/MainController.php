@@ -119,7 +119,6 @@ class MainController extends BaseController{
     }
 
     public function getVenta(){
-        dd(Input::all()['fecha']);
         $band = Input::all()['band'];
         $ventas = Venta::all();
         $idsVentas = [];
@@ -127,7 +126,7 @@ class MainController extends BaseController{
             $mes = explode('/',Input::all()['fecha']);
             $mes = $mes[0];
             foreach($ventas as $venta){
-                $fecha = explode('-', substr($venta->created_at, 0, 9));
+                $fecha = explode('-', substr($venta->created_at, 0, 10));
                 if($fecha[1] == $mes){
                     array_push($idsVentas,$venta->id);
                 }
@@ -135,11 +134,12 @@ class MainController extends BaseController{
         }else{
             $dia = explode('/',Input::all()['fecha']);
             foreach($ventas as $venta){
-                $fecha = substr($venta->created_at, 0, 9);
+                $fecha = substr($venta->created_at, 0, 10);
                 $fecha = explode('-', $fecha);
                 $fechaNew = $fecha[0].'-'.$fecha[1].'-'.$fecha[2];
-                $fecha = substr($venta->created_at, 0, 9);
+                $fecha = substr($venta->created_at, 0, 10);
 
+                $dia = $dia[2].'-'.$dia[0].'-'.$dia[1];
                 if($dia == $fechaNew){
                     array_push($idsVentas,$venta->id);
                 }
