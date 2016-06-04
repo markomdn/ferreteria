@@ -17,7 +17,7 @@ use App\Ferreteria\Entities\Categoria;
         Route::post('createProducto', 'MainController@createProducto');
         Route::post('deleteProducto', 'MainController@deleteProducto');
         Route::put('editProducto', 'MainController@editProducto');
-
+        Route::put('editProductoForSale', 'MainController@editProductoForSale');
         Route::get('getCategorias', 'MainController@getCategorias');
         Route::get('getProductos', 'MainController@getProductos');
         Route::get('getProducto/{id}', 'MainController@getProducto');

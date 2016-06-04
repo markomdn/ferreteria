@@ -68,6 +68,24 @@ class MainController extends BaseController{
         return false;
     }
 
+    public function editProductoForSale(){
+        $venta = $this->ventaRepo->createVenta(1);
+        foreach (Input::all() as $producto) {
+            $product = $this->productoRepo->getProductoById($producto['id']);
+            if(isset($product)){
+                $product->stock -= $producto['toDescount'];
+                $product->save();
+
+                $linea = $this->lineaVentaRepo->createLineaVenta(
+                    $product['toDescount'],
+                    $product->precio,
+                    $product->id,
+                    $venta->id);
+            }
+        }
+        return $venta;
+    }
+
     public function getCategorias(){
         $categorias = Categoria::all();
         return $categorias;
