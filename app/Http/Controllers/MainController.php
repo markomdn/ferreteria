@@ -108,7 +108,7 @@ class MainController extends BaseController{
         
         if(isset($user)){
             if($user->password == Input::all()['password']){
-                return true;
+                return 'true';
             }
 
             return 'Password invalido';
