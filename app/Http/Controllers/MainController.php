@@ -45,7 +45,6 @@ class MainController extends BaseController{
     }
 
     public function deleteProducto(){
-        dd(Input::all());
         $producto = $this->productoRepo->getProductoById(Input::all()['idProducto']);
         if(isset($producto)){
             $producto->delete();
