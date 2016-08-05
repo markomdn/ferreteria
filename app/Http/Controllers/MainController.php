@@ -103,18 +103,18 @@ class MainController extends BaseController{
     
     public function login(){
         $user = DB::table('users')
-            ->where('name','=',Input::all()['userName'])
+            ->where('name','=',Input::all()['username'])
             ->first();
         
         if(isset($user)){
-            if($user->password == Input::all()['password']){
+            if($user->password == Input::all()['pass']){
                 return 'true';
             }
 
-            return 'Password invalido';
+            return 'false';
         }
 
-        return 'No existe usuario';
+        return 'false';
     }
 
     public function getVenta(){

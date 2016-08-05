@@ -23,7 +23,7 @@ use App\Ferreteria\Entities\Categoria;
         Route::get('getVenta', 'MainController@getVenta');
         Route::get('getProducto/{id}', 'MainController@getProducto');
 
-        Route::get('login',' MainController@login');
+        Route::post('login','MainController@login');
     });
 //});
 
